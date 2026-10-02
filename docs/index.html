@@ -94,12 +94,29 @@ details summary { cursor: pointer; padding: 14px 0; font-weight: 700; }
 details .ans { padding-bottom: 14px; color: var(--muted); }
 footer { margin: 72px 0 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 6px; }
 </style>
+<!-- Meta Pixel Code -->
+<script>
+!function(f,b,e,v,n,t,s)
+{if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+n.queue=[];t=b.createElement(e);t.async=!0;
+t.src=v;s=b.getElementsByTagName(e)[0];
+s.parentNode.insertBefore(t,s)}(window, document,'script',
+'https://connect.facebook.net/en_US/fbevents.js');
+fbq('init', '1152715006830829');
+fbq('track', 'PageView');
+</script>
+<noscript><img height="1" width="1" style="display:none"
+src="https://www.facebook.com/tr?id=1152715006830829&ev=PageView&noscript=1"
+/></noscript>
+<!-- End Meta Pixel Code -->
 </head>
 <body>
 <div class="wrap">
   <nav class="top">
     <a class="brandrow" href="#"><img class="logo" src="brand/icon.svg" alt="" width="40" height="40"><span class="brand">Free App Kit</span></a>
-    <div class="navlinks"><a href="#lam-gi">Làm gì</a><a href="#quy-trinh">Quy trình</a><a href="#bao-mat">Bảo mật</a><a href="#ten-mien">Tên miền</a><a href="#cai-dat">Cài đặt</a><a href="https://app.danghuuson.com/">Dự án khác</a></div>
+    <div class="navlinks"><a href="#lam-gi">Làm gì</a><a href="#quy-trinh">Quy trình</a><a href="#bao-mat">Bảo mật</a><a href="#ten-mien">Tên miền</a><a href="#cai-dat">Cài đặt</a><a href="https://github.com/sonlovinbot/free-app-sponsor-kit" target="_blank" rel="noopener">GitHub</a><a href="https://app.danghuuson.com/">Dự án khác</a></div>
   </nav>
 
   <h1>Vibe code xong rồi?<br><em>Đưa phần mềm ra công chúng</em> — an toàn, miễn phí</h1>
@@ -107,6 +124,7 @@ footer { margin: 72px 0 32px; padding-top: 24px; border-top: 1px solid var(--bor
   <div class="cta">
     <a class="btn primary" href="#cai-dat">⬇ Cài vào Claude Code</a>
     <a class="btn" href="#quy-trinh">Xem quy trình 7 bước</a>
+    <a class="btn" href="https://github.com/sonlovinbot/free-app-sponsor-kit" target="_blank" rel="noopener">GitHub ↗</a>
   </div>
   <div class="badges"><span class="badge">2 skill</span><span class="badge">macOS · Windows · Linux</span><span class="badge">GitHub Pages miễn phí</span><span class="badge">Giấy phép MIT</span></div>
 
@@ -226,7 +244,7 @@ footer { margin: 72px 0 32px; padding-top: 24px; border-top: 1px solid var(--bor
   <div class="card">
     <div class="cmd"><code>/plugin marketplace add sonlovinbot/free-app-sponsor-kit</code><button type="button">Sao chép</button></div>
     <div class="cmd"><code>/plugin install free-app-sponsor-kit@sonlovinbot-skills</code><button type="button">Sao chép</button></div>
-    <p class="meta" style="margin-top:12px">Hoặc <a href="https://github.com/sonlovinbot/free-app-sponsor-kit/archive/refs/heads/main.zip">tải file .zip</a>, giải nén, chép 2 thư mục trong <code>skills/</code> vào <code>~/.claude/skills/</code>.</p>
+    <p class="meta" style="margin-top:12px">Hoặc <a href="https://github.com/sonlovinbot/free-app-sponsor-kit/archive/refs/heads/main.zip">tải file .zip</a>, giải nén, chép 2 thư mục trong <code>skills/</code> vào <code>~/.claude/skills/</code>. Mã nguồn, tài liệu và ghi chú phiên bản: <a href="https://github.com/sonlovinbot/free-app-sponsor-kit" target="_blank" rel="noopener">GitHub</a>.</p>
   </div>
 
   <h2>❓ Hỏi nhanh</h2>
@@ -238,6 +256,7 @@ footer { margin: 72px 0 32px; padding-top: 24px; border-top: 1px solid var(--bor
   <footer>
     <span>Phát triển bởi <a href="https://www.facebook.com/danghuuson.182/">Đặng Hữu Sơn</a> — CEO &amp; Co-Founder LovinBot AI · <a href="https://app.danghuuson.com/">Xem các dự án khác →</a></span>
     <span>Giấy phép MIT · Dùng với Claude Code</span>
+    <span style="font-size:12px">Trang dùng Meta Pixel (cookie của Facebook) để đo lượt xem.</span>
   </footer>
 </div>
 <script>
