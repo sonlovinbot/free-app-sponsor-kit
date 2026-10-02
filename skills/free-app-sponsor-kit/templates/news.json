@@ -1,0 +1,36 @@
+{
+  "latest_version": "1.0.0",
+  "release_url": "https://github.com/<user>/<repo>/releases/latest",
+  "update_note": "Chạy lại lệnh cài để cập nhật — giữ nguyên dữ liệu của bạn.",
+  "announcements": [
+    {
+      "id": "bootcamp-ai-vibecode-2026",
+      "placement": "sidebar",
+      "tone": "promo",
+      "label": "Ad · Sponsor",
+      "campaign": "bootcamp-ai-vibecode-2026",
+      "apps": [],
+      "title": "Bootcamp AI Vibe Code 2026",
+      "text": "Combo Vibe Code × AI Marketing — 14 ngày học Zoom thực chiến. Không cần biết code.",
+      "image": "https://<user>.github.io/<repo>/ads/bootcamp-2026.jpg",
+      "link": "https://academy.coachio.ai/funnels/ai-marketing-bootcamp-2026",
+      "cta": "Xem chương trình",
+      "start": "",
+      "end": "2026-10-04",
+      "dismissible": true
+    },
+    {
+      "id": "elearning-2026-10",
+      "placement": "sidebar",
+      "tone": "promo",
+      "title": "Khoá e-learning …",
+      "text": "…",
+      "image": "",
+      "link": "https://academy.coachio.ai/…",
+      "cta": "Xem khoá học",
+      "start": "2026-10-05",
+      "end": "2026-11-30",
+      "dismissible": true
+    }
+  ]
+}

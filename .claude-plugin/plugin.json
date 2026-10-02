@@ -1,0 +1,9 @@
+{
+  "name": "free-app-sponsor-kit",
+  "description": "Góc tài trợ cho phần mềm miễn phí: thẻ Ad · Sponsor + thư ngỏ (i), thanh thông báo, báo bản mới, khung Phát triển bởi, UTM — điều khiển từ xa bằng news.json.",
+  "version": "1.0.0",
+  "author": { "name": "Đặng Hữu Sơn" },
+  "homepage": "https://github.com/sonlovinbot/free-app-sponsor-kit",
+  "repository": "https://github.com/sonlovinbot/free-app-sponsor-kit",
+  "license": "MIT"
+}

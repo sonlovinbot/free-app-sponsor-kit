@@ -1,0 +1,32 @@
+<!-- Sponsor Kit — đoạn gắn vào phần mềm / website miễn phí.
+     1) Chép kit/sponsor-kit.css + kit/sponsor-kit.js vào thư mục tĩnh (vd: /vendor/sponsor-kit/).
+     2) Đặt 3 vị trí: thanh trên đầu nội dung, thẻ QC ở cột bên (trên khung "Phát triển bởi"), khung credit.
+     3) Gọi SponsorKit.init một lần, cuối <body>. -->
+<link rel="stylesheet" href="/vendor/sponsor-kit/sponsor-kit.css" />
+
+<aside class="sidebar">
+  <!-- … menu của app … -->
+  <div id="sk-side"></div>      <!-- thẻ quảng cáo (1 cái) -->
+  <div id="sk-credit"></div>    <!-- khung "Phát triển bởi" -->
+</aside>
+<main>
+  <div id="sk-top"></div>       <!-- thanh thông báo / báo bản mới (tối đa 2) -->
+  <!-- … nội dung … -->
+</main>
+
+<script src="/vendor/sponsor-kit/sponsor-kit.js"></script>
+<script>
+  SponsorKit.init({
+    appName: "Tên phần mềm",
+    appId: "ten_phan_mem",                 // khớp "apps" trong feed dùng chung
+    appVersion: "1.0.0",                   // app local có proxy thì bỏ — proxy trả về version
+    // App local có server: "/api/news" (proxy, cache đĩa). Website / app không server: link news.json.
+    feedUrl: "https://<user>.github.io/<repo>/news.json",
+    slots: { top: "#sk-top", side: "#sk-side", credit: "#sk-credit" },
+    utm: { source: "ten_phan_mem", medium: "website" },   // local app: medium "local_app"
+    sponsorName: "Coachio Academy",
+    developer: { name: "Đặng Hữu Sơn", title: "CEO & Co-Founder LovinBot AI", url: "https://www.facebook.com/danghuuson.182/" },
+    basedOn: "",                           // vd "Dựa trên model AI VieNeu-TTS" (giữ ghi nhận mã nguồn mở)
+    storagePrefix: "ten_phan_mem",
+  });
+</script>
