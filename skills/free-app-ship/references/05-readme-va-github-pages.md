@@ -58,14 +58,14 @@ khi có người dùng. Muốn một dự án có tên miền riêng (`audio.dan
 ### Giữ kín mã nguồn mà trang vẫn công khai (tổ chức GitHub Team)
 
 Gói Team gắn với **tổ chức**, không với tài khoản cá nhân — repo cá nhân không hưởng. Mô hình đã chạy (03/10/2026):
-- Tổ chức \`sonlovinbot-team\` (Team) + repo trang gốc \`sonlovinbot-team.github.io\` có CNAME **\`studio.danghuuson.com\`**
-  (trang gốc chuyển về trang chủ tổng hợp). Xác minh \`danghuuson.com\` **riêng cho tổ chức** (TXT \`_github-pages-challenge-<org>\`).
-- Chuyển repo: \`gh api -X POST repos/<user>/<repo>/transfer -f new_owner=<org>\` → \`gh repo edit <org>/<repo> --visibility private
-  --accept-visibility-change-consequences\` → repo build bằng Actions phải **chạy lại workflow** (\`gh workflow run\`) mới có trang.
-- Kết quả: \`studio.danghuuson.com/<repo>/\` trả 200, \`github.com/<org>/<repo>\` và raw trả 404 với người ngoài.
-- Link cũ: GitHub chuyển hướng repo nhưng **không** chuyển hướng trang → đặt \`<repo>/index.html\` chuyển hướng + mảng \`moved\`
-  trong \`404.html\` của trang chủ cá nhân (giữ cả đường dẫn con).
-- **Không** đưa vào repo riêng tư: phần mềm có bộ cài tải từ Releases / lệnh cài qua raw.githubusercontent / \`news.json\` —
+- Tổ chức `sonlovinbot-team` (Team) + repo trang gốc `sonlovinbot-team.github.io` có CNAME **`studio.danghuuson.com`**
+  (trang gốc chuyển về trang chủ tổng hợp). Xác minh `danghuuson.com` **riêng cho tổ chức** (TXT `_github-pages-challenge-<org>`).
+- Chuyển repo: `gh api -X POST repos/<user>/<repo>/transfer -f new_owner=<org>` → `gh repo edit <org>/<repo> --visibility private
+  --accept-visibility-change-consequences` → repo build bằng Actions phải **chạy lại workflow** (`gh workflow run`) mới có trang.
+- Kết quả: `studio.danghuuson.com/<repo>/` trả 200, `github.com/<org>/<repo>` và raw trả 404 với người ngoài.
+- Link cũ: GitHub chuyển hướng repo nhưng **không** chuyển hướng trang → đặt `<repo>/index.html` chuyển hướng + mảng `moved`
+  trong `404.html` của trang chủ cá nhân (giữ cả đường dẫn con).
+- **Không** đưa vào repo riêng tư: phần mềm có bộ cài tải từ Releases / lệnh cài qua raw.githubusercontent / `news.json` —
   người ngoài không tải được. Code chạy trên trình duyệt (JS, model 3D) vẫn xem được dù repo kín.
 
 ## Ảnh giao diện
