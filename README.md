@@ -1,5 +1,7 @@
 # 💌 Free App Kit — phát hành phần mềm miễn phí, có góc tài trợ
 
+🌐 **Trang giới thiệu: https://app.danghuuson.com/free-app-sponsor-kit/**
+
 Bộ **2 skill cho Claude Code** của Đặng Hữu Sơn, rút ra từ dự án thật [AI Audio Studio](https://github.com/sonlovinbot/vieneu-audio-studio):
 
 | Skill | Dùng khi | Gồm |

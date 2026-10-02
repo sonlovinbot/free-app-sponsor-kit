@@ -1,0 +1,251 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free App Kit — Đưa phần mềm vibe code ra công chúng, an toàn và miễn phí</title>
+<meta name="description" content="Bộ skill cho Claude Code: quy trình phát hành phần mềm miễn phí — kiểm tra bảo mật trước khi chia sẻ, bộ cài 1 lệnh, GitHub Releases, trang giới thiệu, tên miền riêng miễn phí trên GitHub, góc tài trợ và báo bản mới.">
+<meta property="og:title" content="Free App Kit — Đưa phần mềm vibe code ra công chúng">
+<meta property="og:description" content="Kiểm bảo mật, bộ cài 1 lệnh, trang giới thiệu, tên miền riêng miễn phí, góc tài trợ — Claude làm theo quy trình, bạn chỉ trả lời vài câu.">
+<meta property="og:image" content="https://app.danghuuson.com/free-app-sponsor-kit/assets/og.jpg">
+<link rel="icon" type="image/svg+xml" href="brand/icon.svg">
+<link rel="icon" type="image/png" sizes="64x64" href="brand/favicon-64.png">
+<link rel="icon" type="image/png" sizes="32x32" href="brand/favicon-32.png">
+<link rel="apple-touch-icon" href="brand/apple-touch-icon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --bg: #F7F7FA; --surface: #FFFFFF; --border: #E5E7EF; --text: #1F2937; --muted: #5B6472;
+  --ink: #4338CA; --soft: #EEF0FF; --line: #C7D2FE; --code: #111827; --chip: #EEF0F3;
+  --ok: #15803D; --warn: #B45309; --bad: #B91C1C;
+}
+@media (prefers-color-scheme: dark) {
+  :root { --bg: #0F1117; --surface: #171A22; --border: #2A2F3B; --text: #E8EAF0; --muted: #A3AAB8;
+          --ink: #A5B4FC; --soft: #1D2040; --line: #3730A3; --code: #0A0C12; --chip: #232733;
+          --ok: #4ADE80; --warn: #FBBF24; --bad: #F87171; }
+}
+* { box-sizing: border-box; }
+body { margin: 0; font: 16px/1.65 "Be Vietnam Pro", system-ui, sans-serif; color: var(--text); background: var(--bg); }
+a { color: var(--ink); font-weight: 700; }
+code { font: 13px/1.5 ui-monospace, Menlo, monospace; background: var(--chip); padding: 1px 6px; border-radius: 6px; word-break: break-word; }
+.wrap { max-width: 1080px; margin: 0 auto; padding: 0 16px; }
+nav.top { display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 22px 0 0; flex-wrap: wrap; }
+.brandrow { display: flex; align-items: center; gap: 12px; text-decoration: none; color: var(--text); }
+.logo { width: 40px; height: 40px; display: block; filter: drop-shadow(0 4px 10px rgba(67, 56, 202, .3)); }
+.brand { font: 700 22px/1.2 "Be Vietnam Pro", sans-serif; letter-spacing: -0.01em; }
+.navlinks { display: flex; gap: 16px; flex-wrap: wrap; font-size: 14px; }
+.navlinks a { color: var(--muted); font-weight: 500; text-decoration: none; }
+.navlinks a:hover { color: var(--ink); }
+h1 { font-size: clamp(30px, 5.2vw, 50px); line-height: 1.12; margin: 34px 0 14px; letter-spacing: -0.02em; }
+h1 em { font-style: normal; color: var(--ink); }
+h2 { font-size: 26px; margin: 64px 0 6px; scroll-margin-top: 16px; letter-spacing: -0.01em; }
+h3 { margin: 0; font-size: 17px; }
+.lead { color: var(--muted); max-width: 780px; margin: 0 0 20px; }
+.meta { font-size: 13px; color: var(--muted); }
+.cta { display: flex; gap: 12px; flex-wrap: wrap; }
+.btn { display: inline-flex; align-items: center; gap: 8px; padding: 12px 20px; border-radius: 10px; text-decoration: none;
+       font-weight: 700; border: 1px solid var(--border); color: var(--text); background: var(--surface); }
+.btn.primary { background: #4338CA; border-color: #4338CA; color: #fff; }
+.badges { display: flex; gap: 8px; flex-wrap: wrap; margin-top: 18px; }
+.badge { font-size: 13px; padding: 4px 10px; border-radius: 999px; background: var(--surface); border: 1px solid var(--border); color: var(--muted); }
+.cards { display: grid; gap: 12px; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); }
+.card { background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 18px; }
+.card p { margin: 6px 0 0; color: var(--muted); font-size: 15px; }
+.card ul { margin: 10px 0 0; padding-left: 20px; color: var(--muted); font-size: 14px; }
+.card li + li { margin-top: 4px; }
+.kicker { font-size: 12px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; color: var(--ink); }
+.big { display: grid; gap: 14px; grid-template-columns: 1fr 1fr; }
+@media (max-width: 760px) { .big { grid-template-columns: 1fr; } }
+.big .card { padding: 22px; }
+.big h3 { font-size: 21px; margin: 4px 0 2px; }
+.ico { font-size: 26px; }
+.steps { counter-reset: s; display: grid; gap: 10px; }
+.step { counter-increment: s; display: grid; grid-template-columns: 44px 1fr; gap: 14px; align-items: start;
+        background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 16px; }
+.step::before { content: counter(s); width: 36px; height: 36px; border-radius: 50%; display: grid; place-items: center;
+                font-weight: 800; background: var(--soft); color: var(--ink); border: 1px solid var(--line); }
+.step p { margin: 4px 0 0; color: var(--muted); font-size: 15px; }
+.term { background: var(--code); color: #E5E7EB; border-radius: 12px; padding: 16px; overflow-x: auto;
+        font: 13px/1.7 ui-monospace, Menlo, monospace; white-space: pre; margin: 0; }
+.term .r { color: #F87171; } .term .y { color: #FBBF24; } .term .g { color: #4ADE80; } .term .d { color: #9CA3AF; }
+.split { display: grid; gap: 16px; grid-template-columns: 1fr 1fr; align-items: start; }
+@media (max-width: 820px) { .split { grid-template-columns: 1fr; } }
+.shots { display: flex; gap: 14px; flex-wrap: wrap; align-items: flex-start; }
+.shots figure { margin: 0; background: var(--surface); border: 1px solid var(--border); border-radius: 14px; padding: 8px; }
+.shots img { display: block; height: 300px; width: auto; max-width: 100%; border-radius: 8px; }
+.shots figcaption { padding: 6px 4px 2px; font-size: 13px; color: var(--muted); max-width: 320px; }
+.say { display: grid; gap: 8px; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); }
+.say div { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; font-size: 15px; }
+.say b { display: block; font-size: 12px; color: var(--ink); letter-spacing: .5px; text-transform: uppercase; margin-bottom: 2px; }
+.cmd { display: flex; gap: 8px; margin-top: 8px; }
+.cmd code { flex: 1; min-width: 0; overflow-x: auto; white-space: nowrap; background: var(--code); color: #F3F4F6; padding: 10px 12px; border-radius: 8px; word-break: normal; }
+.cmd button { flex: none; font: 700 13px "Be Vietnam Pro", sans-serif; border-radius: 8px; border: 1px solid var(--border);
+              background: var(--surface); color: var(--text); padding: 0 12px; cursor: pointer; }
+table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--border); border-radius: 12px; overflow: hidden; font-size: 14px; }
+th, td { text-align: left; padding: 10px 12px; border-bottom: 1px solid var(--border); vertical-align: top; }
+th { background: var(--soft); font-size: 13px; }
+tr:last-child td { border-bottom: 0; }
+.note { background: var(--soft); border: 1px solid var(--line); border-radius: 12px; padding: 14px 16px; margin-top: 14px; font-size: 15px; }
+.warn { background: #FFFBEB; border-color: #FDE68A; color: #78350F; }
+@media (prefers-color-scheme: dark) { .warn { background: #2A2410; border-color: #5C4A12; color: #FDE68A; } }
+details { background: var(--surface); border: 1px solid var(--border); border-radius: 12px; padding: 0 16px; margin-bottom: 8px; }
+details summary { cursor: pointer; padding: 14px 0; font-weight: 700; }
+details .ans { padding-bottom: 14px; color: var(--muted); }
+footer { margin: 72px 0 32px; padding-top: 24px; border-top: 1px solid var(--border); color: var(--muted); font-size: 14px; display: flex; flex-direction: column; gap: 6px; }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <nav class="top">
+    <a class="brandrow" href="#"><img class="logo" src="brand/icon.svg" alt="" width="40" height="40"><span class="brand">Free App Kit</span></a>
+    <div class="navlinks"><a href="#lam-gi">Làm gì</a><a href="#quy-trinh">Quy trình</a><a href="#bao-mat">Bảo mật</a><a href="#ten-mien">Tên miền</a><a href="#cai-dat">Cài đặt</a><a href="https://app.danghuuson.com/">Dự án khác</a></div>
+  </nav>
+
+  <h1>Vibe code xong rồi?<br><em>Đưa phần mềm ra công chúng</em> — an toàn, miễn phí</h1>
+  <p class="lead">Free App Kit là bộ skill cho <b>Claude Code</b>. Bạn chỉ cần nói <i>"chuẩn bị phát hành app này"</i> — Claude đi đúng quy trình: hỏi bạn vài câu, kiểm tra bảo mật trước khi chia sẻ, đóng gói bộ cài 1 lệnh, phát hành, dựng trang giới thiệu có tên miền riêng, gắn góc tài trợ và tự báo khi có bản mới.</p>
+  <div class="cta">
+    <a class="btn primary" href="#cai-dat">⬇ Cài vào Claude Code</a>
+    <a class="btn" href="#quy-trinh">Xem quy trình 7 bước</a>
+  </div>
+  <div class="badges"><span class="badge">2 skill</span><span class="badge">macOS · Windows · Linux</span><span class="badge">GitHub Pages miễn phí</span><span class="badge">Giấy phép MIT</span></div>
+
+  <h2 id="lam-gi">🧰 Bộ kit làm gì</h2>
+  <p class="lead">Không chỉ gắn quảng cáo — đó là quy trình đầy đủ để một phần mềm cá nhân trở thành sản phẩm người khác tải về và dùng được.</p>
+  <div class="big">
+    <div class="card">
+      <span class="ico">🚀</span><span class="kicker" style="margin-left:8px">Skill 1</span>
+      <h3>free-app-ship — quy trình phát hành</h3>
+      <p>Từ "chạy được trên máy" tới "chia sẻ được cho người dùng":</p>
+      <ul>
+        <li>Hỏi đáp với người tạo, ghi quyết định vào <code>SHIP.md</code> để lần sau không hỏi lại</li>
+        <li><b>Kiểm tra bảo mật &amp; bản quyền</b> trước mỗi lần chia sẻ</li>
+        <li>Dọn repo, bộ cài zip + <b>lệnh cài 1 dòng</b> (không bị macOS / Windows chặn)</li>
+        <li>GitHub Releases, phiên bản, changelog, ghi chú phát hành</li>
+        <li>README + <b>trang giới thiệu</b> (video, ảnh, demo, tải trực tiếp, xử lý sự cố)</li>
+        <li><b>Tên miền riêng miễn phí</b> cho mọi dự án; giữ kín mã nguồn khi cần</li>
+        <li>Onboarding, giao diện, nhật ký bài học để không lặp lỗi cũ</li>
+      </ul>
+    </div>
+    <div class="card">
+      <span class="ico">💌</span><span class="kicker" style="margin-left:8px">Skill 2</span>
+      <h3>free-app-sponsor-kit — góc tài trợ &amp; thông báo</h3>
+      <p>Bộ code nhúng sẵn cho phần mềm miễn phí cần một chút kinh phí:</p>
+      <ul>
+        <li>Thẻ quảng cáo nhãn <b>Ad · Sponsor</b> + nút (i) mở <b>thư ngỏ</b> giải thích vì sao có quảng cáo</li>
+        <li>Thanh thông báo và <b>"Đã có bản mới"</b> tự hiện</li>
+        <li>Khung <b>"Phát triển bởi"</b> dùng chung cho mọi app</li>
+        <li><b>UTM</b> tự gắn: biết lượt bấm đến từ app nào, vị trí nào</li>
+        <li>Mỗi quảng cáo có <b>lịch tự tắt</b>, xếp sẵn quảng cáo kế tiếp</li>
+        <li>Điều khiển từ xa bằng 1 file <code>news.json</code> — app chạy offline vẫn hiện bản đã lưu</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>💬 Chỉ cần nói với Claude</h2>
+  <p class="lead">Không phải nhớ lệnh. Claude tự nhận bạn đang muốn gì và mở đúng phần của quy trình.</p>
+  <div class="say">
+    <div><b>Phát hành lần đầu</b>"Chuẩn bị phát hành app này cho người dùng"</div>
+    <div><b>Ra bản mới</b>"Ra bản 1.2, cập nhật cho người dùng"</div>
+    <div><b>Chỉ kiểm bảo mật</b>"Check security trước khi share"</div>
+    <div><b>Trang giới thiệu</b>"Làm trang giới thiệu, nhúng video"</div>
+    <div><b>Tên miền</b>"Gắn tên miền app.tenmien.com cho các dự án"</div>
+    <div><b>Góc tài trợ</b>"Gắn sponsor kit, quảng cáo tới hết 31/10"</div>
+  </div>
+
+  <h2 id="quy-trinh">🗺 Quy trình 7 bước</h2>
+  <p class="lead">Claude chỉ hỏi những gì không tự suy ra được từ code, và dừng lại xin xác nhận trước mọi việc ra bên ngoài (tạo repo công khai, push, phát hành).</p>
+  <div class="steps">
+    <div class="step"><div><h3>Hỏi đáp với người tạo</h3><p>Tên app, tài khoản GitHub, công khai hay riêng tư, dự án gốc và giấy phép, nhà tài trợ, dữ liệu người dùng lưu ở đâu — gom một lần, ghi vào <code>SHIP.md</code>.</p></div></div>
+    <div class="step"><div><h3>Dọn repo</h3><p>Bỏ tài liệu, ví dụ, test, CI thừa của dự án gốc và thư viện nặng không dùng; giữ LICENSE và ghi nhận tác giả. Cài mới từ zip để chắc vẫn chạy.</p></div></div>
+    <div class="step"><div><h3>Kiểm tra bảo mật &amp; bản quyền</h3><p>Quét khoá API, token, file bí mật — cả trong lịch sử git; dữ liệu cá nhân trong ảnh và log; giấy phép. Còn lỗi đỏ thì không push.</p></div></div>
+    <div class="step"><div><h3>Đóng gói &amp; phát hành</h3><p>Zip cho từng hệ điều hành, lệnh cài 1 dòng (Terminal / PowerShell) không bị chặn, GitHub Releases với link tải luôn trỏ bản mới nhất.</p></div></div>
+    <div class="step"><div><h3>README &amp; trang giới thiệu</h3><p>Trang GitHub Pages có video nhúng, ảnh chụp từ bản sạch (không lộ dữ liệu riêng), nút tải trực tiếp, mục "Không cài được?".</p></div></div>
+    <div class="step"><div><h3>Giao diện &amp; lần dùng đầu</h3><p>Onboarding kiểm tra cấu hình máy, độ tương phản chữ, màn hình laptop và điện thoại, font có dấu tiếng Việt.</p></div></div>
+    <div class="step"><div><h3>Sau phát hành</h3><p>Báo bản mới và quảng cáo từ xa, kiểm tra mọi link tải / trang / thông báo đều chạy, ghi bài học mới.</p></div></div>
+  </div>
+
+  <h2 id="bao-mat">🛡 Kiểm tra bảo mật trước khi chia sẻ</h2>
+  <p class="lead">Một lệnh, báo 🔴 phải sửa · 🟡 xem lại · 🟢 ổn. Chạy được độc lập, không cần Claude.</p>
+  <div class="split">
+    <div class="card">
+      <h3>Quét những gì</h3>
+      <ul>
+        <li>Khoá OpenAI, Anthropic, Hugging Face, GitHub, AWS, Google, Slack, khoá riêng tư, JWT</li>
+        <li><b>Lịch sử git</b> — khoá đã xoá khỏi file vẫn lấy lại được</li>
+        <li>File <code>.env</code>, <code>.pem</code>, credentials, file phiên của công cụ AI</li>
+        <li>Đường dẫn máy cá nhân, email, file quá lớn</li>
+        <li>LICENSE, ghi nhận tác giả gốc, giấy phép GPL</li>
+        <li>CI thừa hưởng, server mở cho cả mạng, CORS</li>
+      </ul>
+      <p>Có hướng dẫn xử lý khi <b>lỡ đẩy bí mật lên</b>: thu hồi trước, xoá khỏi lịch sử sau.</p>
+    </div>
+<pre class="term"><span class="d">$ bash preship_check.sh .</span>
+
+── 2. Bí mật trong LỊCH SỬ git ──
+<span class="r">🔴 ĐỎ   Lịch sử git còn chuỗi giống khoá</span>
+        +ghp_BBBBBBBBBBBB…
+── 3. File phiên công cụ ──
+<span class="r">🔴 ĐỎ   .gstack/browse.json (có thể chứa token)</span>
+── 4. Dữ liệu cá nhân ──
+<span class="y">🟡 VÀNG  app.py:3: "/Users/someone/models/x"</span>
+── 6. CI và cấu hình ──
+<span class="y">🟡 VÀNG  Server mặc định nghe 0.0.0.0</span>
+<span class="g">🟢 OK    không có .env / khoá / credentials</span>
+
+<span class="r">══ Kết quả: 2 ĐỎ · 3 VÀNG ══</span>
+<span class="d">→ Chưa được push công khai.</span></pre>
+  </div>
+
+  <h2 id="tai-tro">💌 Góc tài trợ minh bạch</h2>
+  <p class="lead">Phần mềm miễn phí vẫn cần kinh phí. Một thẻ nhỏ có nhãn rõ ràng, nút (i) mở thư ngỏ nói thật với người dùng — không popup, không theo dõi.</p>
+  <div class="shots">
+    <figure><img src="assets/the-quang-cao.png" alt="Thẻ quảng cáo Ad · Sponsor" loading="lazy"><figcaption>Thẻ quảng cáo: nhãn Ad · Sponsor, nút (i), nút đóng</figcaption></figure>
+    <figure><img src="assets/thu-ngo.png" alt="Thư ngỏ dạng phong bì" loading="lazy"><figcaption>Thư ngỏ dạng phong bì: miễn phí, góc nhỏ tài trợ, không dựa trên dữ liệu của bạn</figcaption></figure>
+  </div>
+
+  <h2 id="ten-mien">🌐 Tên miền riêng cho mọi dự án — miễn phí trên GitHub</h2>
+  <p class="lead">Có một tên miền (vd <code>tenban.com</code>) là đủ: mọi dự án dùng chung một địa chỉ đẹp <code>app.tenban.com/&lt;tên-dự-án&gt;</code>, có HTTPS, không tốn thêm đồng nào. Website đang chạy ở tên miền gốc không bị ảnh hưởng.</p>
+  <div class="steps">
+    <div class="step"><div><h3>Xác minh tên miền gốc với GitHub</h3><p>GitHub → <b>Settings → Pages → Add a domain</b> → nhập <code>tenban.com</code> → thêm bản ghi <b>TXT</b> GitHub đưa (tên dạng <code>_github-pages-challenge-&lt;tài-khoản&gt;</code>) ở nơi quản lý tên miền → bấm Verify. Xác minh tên miền gốc là đủ cho mọi tên miền con.</p></div></div>
+    <div class="step"><div><h3>Trỏ tên miền con về GitHub</h3><p>Thêm bản ghi <b>CNAME</b>: tên <code>app</code> → giá trị <code>&lt;tài-khoản&gt;.github.io.</code> Không đụng bản ghi A của tên miền gốc.</p></div></div>
+    <div class="step"><div><h3>Tạo repo trang chủ</h3><p>Repo tên đặc biệt <code>&lt;tài-khoản&gt;.github.io</code> (công khai), có file <code>CNAME</code> chứa <code>app.tenban.com</code> và một trang tổng hợp dự án. Settings → Pages → Custom domain → <code>app.tenban.com</code>.</p></div></div>
+    <div class="step"><div><h3>Bật HTTPS</h3><p>Chờ GitHub cấp chứng chỉ (vài phút tới 1 giờ) rồi tick <b>Enforce HTTPS</b>. Chứng chỉ Let's Encrypt, tự gia hạn.</p></div></div>
+    <div class="step"><div><h3>Mọi dự án tự có địa chỉ</h3><p>Repo nào bật Pages đều tự chạy ở <code>app.tenban.com/&lt;tên-repo&gt;/</code>; link <code>&lt;tài-khoản&gt;.github.io/…</code> cũ tự chuyển hướng sang.</p></div></div>
+  </div>
+  <table style="margin-top:14px">
+    <tr><th>Cần</th><th>Cách</th><th>Chi phí</th></tr>
+    <tr><td>Trang cho repo công khai</td><td>GitHub Pages như trên</td><td>Miễn phí</td></tr>
+    <tr><td>Mỗi dự án một tên miền con (<code>game.tenban.com</code>)</td><td>Thêm CNAME riêng + gắn Custom domain ở repo đó</td><td>Miễn phí</td></tr>
+    <tr><td>Giữ kín mã nguồn, trang vẫn công khai</td><td>Repo riêng tư trong tổ chức GitHub Team (hoặc tài khoản Pro) + tên miền con riêng, vd <code>studio.tenban.com</code></td><td>Trả phí theo gói GitHub</td></tr>
+  </table>
+  <div class="note warn"><b>⚠️ Ba điều nên biết:</b> (1) <b>Đừng đổi tên repo</b> đã có người dùng — đường dẫn đổi theo và GitHub không chuyển hướng trang cũ. (2) GitHub Pages giới hạn khoảng <b>1 GB</b> mỗi trang và <b>100 GB</b> băng thông/tháng. (3) Điều khoản GitHub không cho dùng Pages làm hosting chính cho kinh doanh, bán hàng, SaaS — trang giới thiệu phần mềm miễn phí thì không sao.</div>
+
+  <h2 id="cai-dat">⬇ Cài vào Claude Code</h2>
+  <p class="lead">Mở Claude Code, gõ lần lượt 2 lệnh (cài cả 2 skill):</p>
+  <div class="card">
+    <div class="cmd"><code>/plugin marketplace add sonlovinbot/free-app-sponsor-kit</code><button type="button">Sao chép</button></div>
+    <div class="cmd"><code>/plugin install free-app-sponsor-kit@sonlovinbot-skills</code><button type="button">Sao chép</button></div>
+    <p class="meta" style="margin-top:12px">Hoặc <a href="https://github.com/sonlovinbot/free-app-sponsor-kit/archive/refs/heads/main.zip">tải file .zip</a>, giải nén, chép 2 thư mục trong <code>skills/</code> vào <code>~/.claude/skills/</code>.</p>
+  </div>
+
+  <h2>❓ Hỏi nhanh</h2>
+  <details><summary>Có cần biết code không?</summary><div class="ans">Không bắt buộc. Claude đọc code, làm các bước và giải thích bằng tiếng Việt. Bạn chỉ trả lời vài câu (tên app, tài khoản, công khai hay riêng tư) và bấm xác nhận khi Claude sắp làm việc ra bên ngoài.</div></details>
+  <details><summary>Dùng cho loại phần mềm nào?</summary><div class="ans">App chạy trên máy (Python, Node, Electron…), website tĩnh, game web 3D, công cụ nội bộ — miễn là bạn muốn chia sẻ miễn phí. Góc tài trợ dùng được cho cả app local (đọc thông báo khi có mạng) lẫn website.</div></details>
+  <details><summary>Kiểm tra bảo mật có đảm bảo an toàn tuyệt đối?</summary><div class="ans">Không công cụ nào hứa được điều đó. Bộ kit quét các lỗi hay gặp nhất (khoá lộ, file bí mật, dữ liệu cá nhân, giấy phép) và báo rõ đã kiểm những gì; phần còn lại Claude soát bằng mắt theo danh sách.</div></details>
+  <details><summary>Có bắt buộc gắn quảng cáo không?</summary><div class="ans">Không. Hai skill độc lập — chỉ dùng quy trình phát hành, hoặc chỉ dùng thanh "Đã có bản mới" mà không có quảng cáo.</div></details>
+
+  <footer>
+    <span>Phát triển bởi <a href="https://www.facebook.com/danghuuson.182/">Đặng Hữu Sơn</a> — CEO &amp; Co-Founder LovinBot AI · <a href="https://app.danghuuson.com/">Xem các dự án khác →</a></span>
+    <span>Giấy phép MIT · Dùng với Claude Code</span>
+  </footer>
+</div>
+<script>
+document.querySelectorAll(".cmd button").forEach((b) => b.addEventListener("click", async () => {
+  try { await navigator.clipboard.writeText(b.previousElementSibling.textContent); b.textContent = "Đã chép ✓"; }
+  catch { b.textContent = "Bôi đen để chép"; }
+  setTimeout(() => (b.textContent = "Sao chép"), 2000);
+}));
+</script>
+</body>
+</html>
