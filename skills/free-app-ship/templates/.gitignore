@@ -1,0 +1,23 @@
+# Bí mật — không bao giờ commit
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+credentials*.json
+
+# File phiên của công cụ AI / trình duyệt tự động (có thể chứa token)
+.gstack/
+.claude/settings.local.json
+
+# Build, cache, rác hệ điều hành
+dist/
+build/
+__pycache__/
+*.py[oc]
+*.egg-info/
+.venv/
+node_modules/
+.DS_Store
+Thumbs.db
+*.log

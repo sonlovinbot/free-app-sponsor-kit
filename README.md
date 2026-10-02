@@ -1,4 +1,15 @@
-# 💌 Free App Sponsor Kit — skill cho Claude Code
+# 💌 Free App Kit — phát hành phần mềm miễn phí, có góc tài trợ
+
+Bộ **2 skill cho Claude Code** của Đặng Hữu Sơn, rút ra từ dự án thật [AI Audio Studio](https://github.com/sonlovinbot/vieneu-audio-studio):
+
+| Skill | Dùng khi | Gồm |
+|---|---|---|
+| 🚀 **`free-app-ship`** | Vibe code xong một app, muốn **đẩy lên cho người dùng** hoặc **ra bản mới** | Hỏi đáp với người tạo (`SHIP.md`), **kiểm bảo mật trước khi share** (API key, token, lịch sử git, bản quyền, dữ liệu cá nhân trong ảnh/log), dọn repo, bộ cài zip + cài 1 lệnh (vượt Gatekeeper/SmartScreen), GitHub Releases, cập nhật phiên bản + changelog, README, trang GitHub Pages (video, ảnh, demo), giao diện + onboarding, **nhật ký bài học** |
+| 💌 **`free-app-sponsor-kit`** | Cần **góc quảng cáo nhỏ** bù chi phí, **báo bản mới**, khung **"Phát triển bởi"** | Bộ code nhúng sẵn: thẻ Ad · Sponsor + thư ngỏ (i), thanh thông báo, UTM, lịch tự tắt — điều khiển từ xa bằng `news.json` |
+
+---
+
+## 💌 free-app-sponsor-kit
 
 Gắn **"góc tài trợ"** vào phần mềm / website **miễn phí** bạn vibe code — minh bạch với người dùng,
 điều khiển từ xa, không cần phát hành lại phần mềm.
@@ -21,14 +32,35 @@ Gắn **"góc tài trợ"** vào phần mềm / website **miễn phí** bạn vi
   website đọc thẳng. Một feed dùng chung nhiều app (lọc bằng `apps`).
 - **An toàn**: chỉ nhận chữ + link https, không chạy mã từ xa, không theo dõi người dùng.
 
+## 🚀 free-app-ship — quy trình phát hành
+
+Nói với Claude: *"chuẩn bị phát hành app này"* · *"ra bản mới 1.2"* · *"check security trước khi share"* · *"làm trang giới thiệu"*.
+
+| Bước | Việc | Công cụ |
+|---|---|---|
+| 1 | Hỏi người tạo những gì chưa suy ra được, ghi `SHIP.md` | `references/02-hoi-dap-nguoi-tao.md` |
+| 2 | Dọn repo: bỏ thứ người dùng không cần, giữ LICENSE + ghi nhận | `references/01-quy-trinh-tong.md` |
+| 3 | **Kiểm bảo mật** — 0 ĐỎ mới được push công khai | `scripts/preship_check.sh` |
+| 4 | Bộ cài + cài 1 lệnh + GitHub Release | `templates/install-online.*`, `build-installers.sh` |
+| 5 | README + trang Pages (video nhúng, ảnh từ bản sạch, tải trực tiếp, sự cố) | `references/05-…`, `examples/build_pages_…py` |
+| 6 | Giao diện, onboarding, tương phản, khổ màn hình | `references/06-giao-dien-ux.md` |
+| 7 | Báo bản mới, quảng cáo, kiểm link sau phát hành | `free-app-sponsor-kit`, `scripts/verify_release.sh` |
+
+`references/07-bai-hoc.md` ghi lại **mọi lỗi đã gặp và phản hồi của người tạo** (có ngày) — Claude đọc trước mỗi bước để không lặp lại.
+
+```bash
+bash skills/free-app-ship/scripts/preship_check.sh .     # 🔴 ĐỎ / 🟡 VÀNG / 🟢 OK — exit 1 nếu còn ĐỎ
+bash skills/free-app-ship/scripts/verify_release.sh <user>/<repo> <App>
+```
+
 ## Cài vào Claude Code
 
 ```
 /plugin marketplace add sonlovinbot/free-app-sponsor-kit
-/plugin install free-app-sponsor-kit@sonlovinbot-skills
+/plugin install free-app-sponsor-kit@sonlovinbot-skills   # cài cả 2 skill
 ```
 
-Hoặc chép tay thư mục `skills/free-app-sponsor-kit` vào `~/.claude/skills/`.
+Hoặc chép tay 2 thư mục trong `skills/` vào `~/.claude/skills/`.
 
 ## Dùng
 

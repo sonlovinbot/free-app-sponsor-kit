@@ -1,12 +1,16 @@
 {
   "name": "sonlovinbot-skills",
-  "owner": { "name": "Đặng Hữu Sơn" },
-  "metadata": { "description": "Skill của Đặng Hữu Sơn (LovinBot AI) cho Claude Code." },
+  "owner": {
+    "name": "Đặng Hữu Sơn"
+  },
+  "metadata": {
+    "description": "Skill của Đặng Hữu Sơn (LovinBot AI) cho Claude Code."
+  },
   "plugins": [
     {
       "name": "free-app-sponsor-kit",
       "source": "./",
-      "description": "Góc tài trợ cho phần mềm miễn phí: Ad · Sponsor, thư ngỏ, thông báo, báo bản mới, Phát triển bởi, UTM."
+      "description": "Bộ skill phát hành phần mềm miễn phí: free-app-ship (quy trình phát hành, kiểm bảo mật, bộ cài, GitHub Releases, trang Pages, bài học) + free-app-sponsor-kit (Ad · Sponsor, thư ngỏ, thông báo, báo bản mới, Phát triển bởi, UTM)."
     }
   ]
 }

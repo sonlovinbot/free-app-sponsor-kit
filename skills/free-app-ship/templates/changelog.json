@@ -1,0 +1,13 @@
+{
+  "entries": [
+    {
+      "version": "1.0.0",
+      "date": "2026-10-03",
+      "title": "Phát hành đầu tiên",
+      "changes": [
+        "Viết bằng lời người dùng thấy: làm được gì, sửa lỗi gì — không viết tên hàm.",
+        "Mỗi bản 3–7 dòng; dòng quan trọng nhất đặt đầu."
+      ]
+    }
+  ]
+}
