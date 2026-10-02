@@ -53,5 +53,6 @@ Thêm vào README một bảng "Cấu trúc repo" — thư mục nào làm gì.
 - Gắn skill `free-app-sponsor-kit`: thanh "Đã có bản mới", quảng cáo có lịch, thư ngỏ, khung "Phát triển bởi".
 - Mỗi lần ra bản: tăng `latest_version` trong `docs/news.json` **sau khi** release đã có zip (không thì người dùng bấm
   "xem bản mới" mà link tải còn bản cũ).
+- Thêm dự án vào trang chủ tổng hợp (`projects.json` của repo `<user>.github.io`, xem `05` mục "Tên miền riêng").
 - Chạy `scripts/verify_release.sh` rồi mới báo xong.
 - Thêm bài học mới (nếu có) vào `07-bai-hoc.md`.

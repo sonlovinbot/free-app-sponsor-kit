@@ -26,6 +26,7 @@ Trước khi bắt đầu một bước, lướt cột "Bước" để không l�
 | 02/10 | Model đọc "VieNeu" thành "vai nu" (kiểu tiếng Anh) | Viết phiên âm cho model, **hiển thị** tên gốc (người tạo yêu cầu "demo phải show đúng tên gốc") | 5 |
 | 03/10 | Script kiểm báo "trang chưa có bản mới" dù trang đã có | `curl … \| grep -q` + `set -o pipefail`: grep dừng sớm → curl bị SIGPIPE → báo sai. Tải vào biến trước rồi mới grep | 7 |
 | 03/10 | Script kiểm báo "Thiếu LICENSE" dù có | `ls LICENSE* COPYING*` lỗi khi một mẫu không khớp → dùng `ls -d … \| head -1` và kiểm chuỗi rỗng. **Viết script kiểm thì thử cả trên repo có lỗi cài sẵn lẫn repo sạch** | 3 |
+| 03/10 | Hỏi nên xác minh `danghuuson.com` hay `app.danghuuson.com`; muốn `app…/a` hay `a.…` | Xác minh tên miền gốc là đủ; dùng repo `<user>.github.io` + CNAME để mọi dự án thành `app…/<repo>`. Trang 404 lúc đầu là do chưa có repo này | 5 |
 | 30/09 | HF Space từ chối file nhị phân push thẳng | Zip/ảnh lớn qua Git LFS — hoặc để bộ cài ở GitHub Releases | 4 |
 
 ## Phản hồi của người tạo (gu & yêu cầu lặp lại)

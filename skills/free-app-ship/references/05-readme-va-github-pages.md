@@ -38,6 +38,23 @@ Bỏ tài liệu gốc tiếng Anh của dự án upstream (giữ link + ghi nh�
 - Không dùng font pixel / font không có dấu tiếng Việt (Be Vietnam Pro có subset `vietnamese`).
 - Kiểm: 1280px và 375px (không cuộn ngang), sáng/tối, iframe có, audio phát được (`a.play()` rồi đọc `currentTime`).
 
+## Tên miền riêng cho mọi dự án (vd app.danghuuson.com)
+
+Mô hình đã chạy thật: **một tên miền con, mỗi dự án một đường dẫn** — `app.danghuuson.com/<tên-repo>/`.
+1. GitHub → Settings → Pages → **Verified domains**: xác minh **tên miền gốc** (`danghuuson.com`) bằng bản ghi TXT
+   `_github-pages-challenge-<user>`. Xác minh gốc là đủ cho mọi tên miền con; website đang chạy ở tên miền gốc không ảnh hưởng.
+2. DNS (AZDIGI, Cloudflare…): **CNAME `app` → `<user>.github.io.`** — không đụng bản ghi A của tên miền gốc.
+3. Tạo repo đặc biệt **`<user>.github.io`** (trang chủ tổng hợp) có file `CNAME` = `app.danghuuson.com`, rồi
+   `gh api -X PUT repos/<user>/<user>.github.io/pages -f cname=app.danghuuson.com`.
+4. Chờ `status=built` + chứng chỉ `approved` → `gh api -X PUT …/pages -F https_enforced=true`.
+   (Chuyển http→https có thể chậm vài phút sau khi bật.)
+5. **Mọi repo khác bật Pages tự có** `app.danghuuson.com/<tên-repo>/`; link `<user>.github.io/<repo>/` cũ tự 301 sang.
+   App đã cài đọc `news.json` qua link cũ vẫn chạy (urllib/fetch đi theo 301) — bản sau đổi link mặc định sang tên miền mới.
+6. Thêm dự án vào trang chủ: một mục trong `projects.json` của repo `<user>.github.io` + ảnh 640×360 ở `assets/projects/`.
+
+⚠️ **Đổi tên repo = đổi đường dẫn, và Pages KHÔNG chuyển hướng tên cũ** → app đã cài mất `news.json`. Chốt tên repo trước
+khi có người dùng. Muốn một dự án có tên miền riêng (`audio.danghuuson.com`) thì đặt CNAME riêng cho repo đó.
+
 ## Ảnh giao diện
 
 - Chụp từ **bản app sạch**: chạy bản sao với thư mục dữ liệu trống (`APP_HOME=/tmp/clean`), tạo 2–3 mục demo trung tính,

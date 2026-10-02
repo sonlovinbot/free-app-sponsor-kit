@@ -79,7 +79,7 @@ dọn cache thử). Chi tiết quy trình: [`skills/free-app-sponsor-kit/SKILL.m
 | `scripts/validate_news.py` | Kiểm feed trước khi push (`--urls` mở thử link và ảnh) |
 | `examples/integrate.html` | Đoạn gắn mẫu |
 
-Bản chạy thật: [AI Audio Studio](https://github.com/sonlovinbot/vieneu-audio-studio) — giọng nói AI tiếng Việt chạy trên máy tính.
+Bản chạy thật: [AI Audio Studio](https://app.danghuuson.com/vieneu-audio-studio/) · các dự án khác: [app.danghuuson.com](https://app.danghuuson.com) — giọng nói AI tiếng Việt chạy trên máy tính.
 
 ---
 Phát triển bởi **[Đặng Hữu Sơn](https://www.facebook.com/danghuuson.182/)** — CEO & Co-Founder LovinBot AI · MIT License
