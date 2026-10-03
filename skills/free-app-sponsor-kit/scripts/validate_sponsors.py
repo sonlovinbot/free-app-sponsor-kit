@@ -7,6 +7,7 @@
 Lỗi (ĐỎ) → thoát mã 1. Cảnh báo (VÀNG) không chặn.
 """
 import json
+import re
 import sys
 import urllib.request
 from datetime import datetime, timezone
@@ -68,6 +69,13 @@ def main():
                         warns.append(f"{tag}: {f} {it[f]} đã qua → thẻ hiện mờ ở cuối (vẫn bấm được)")
                 except ValueError as e:
                     errs.append(f"{tag}: {f} '{it[f]}' sai định dạng — {e}")
+        # Không hiển thị giá tiền trên quảng cáo (yêu cầu của người tạo, 03/10/2026)
+        for f in ("price", "price_note", "title", "desc"):
+            v = str(it.get(f, ""))
+            if re.search(r"\d[\d.,]*\s*(đ|₫|vnd|vnđ|k\b|tr\b|triệu|nghìn|ngàn)", v, re.I):
+                errs.append(f"{tag}: {f} có giá tiền '{v}' — không ghi giá trên quảng cáo")
+        if it.get("price_old"):
+            errs.append(f"{tag}: bỏ price_old — không hiện giá gốc / giá giảm")
         img = it.get("image", "")
         if img and not img.startswith("https://") and not (path.parent / img).is_file():
             errs.append(f"{tag}: không thấy ảnh {path.parent / img}")

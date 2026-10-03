@@ -95,7 +95,7 @@ Trang khác (kể cả tên miền khác) gắn script tuyệt đối tới đó
 | `start` + `duration_min` | **sự kiện** (workshop, live): trước giờ → đếm ngược; trong giờ → LIVE; sau → "Đã diễn ra" |
 | `deadline` + `deadline_label` | **hạn ưu đãi** (khoá học): "Ưu đãi đến 23:59 đêm mai" |
 | không có cả hai | **không thời hạn** (e-learning): "Học mọi lúc", xếp sau các mục có ngày |
-| `price`, `price_old`, `price_note` | dòng giá; `price_note` cho mã giảm giá / ghi chú |
+| `price`, `price_note` | dòng chữ dưới thẻ ("Miễn phí", "Học trọn đời", mã giảm giá). **Không ghi giá tiền** — validator chặn số tiền (đ, k, tr…); `price_old` đã bỏ |
 | `url` | link đăng ký https. **Trống → tự ẩn** trên trang thật (`?spk_preview` mới hiện) |
 | `image`, `fit`, `pos`, `bg`, `accent` | ảnh trong `img/`; bìa sách/ảnh dọc dùng `fit: contain` + `bg` cùng tông; `accent` = màu nhãn + nút |
 | `cta`, `cta_popup`, `pitch` | chữ nút; chữ nút + câu mời trong popup game |
@@ -128,6 +128,30 @@ UTM: `utm_source`=`pages.<tên>.source`, `utm_medium`=`sponsor_box` (popup game:
       Thử trên game thật chưa deploy: Playwright `context.route("https://app.danghuuson.com/sponsors/**")` trả file
       local rồi chèn thẻ script (script `http://localhost` bị trang https chặn).
 - [ ] Popup mở: bấm phím (W, Space) → game không nhận; Esc đóng; link có đủ 4 utm.
+
+## Popup giới thiệu người phát triển (bấm "Phát triển bởi")
+
+Kit 1.1: thêm `about` vào `SponsorKit.init` → khung "Phát triển bởi" thành **nút** mở popup (không nhảy sang Facebook):
+ảnh tròn + bong bóng "Xin chào! 👋", tên, chức danh, giới thiệu ngắn, danh sách link (Facebook, fanpage, trang chủ
+dự án — link không phải mạng xã hội tự gắn UTM `utm_content=about-popup`), dòng "Dựa trên …" (`basedOn`), và
+**"Chương trình đang mở"**: quảng cáo đang chạy, **hiện lại kể cả khi người dùng đã bấm ✕** ở thẻ menu (vẫn tôn trọng
+`start`/`end`). App có khung credit riêng thì gọi `SponsorKit.openAbout()` từ nút đó.
+
+```js
+about: {
+  avatar: "/img/dev-avatar.jpg",          // ảnh đóng gói trong app (chạy offline)
+  intro: "Mình làm phần mềm và game bằng AI, chia sẻ miễn phí…",
+  links: [{ label: "Facebook …", note: "Trang cá nhân", url: "https://…", icon: "👤", utm: false }, …],
+}
+```
+Link nên để ở `config/branding.json` rồi app điền vào mảng `links` (popup dựng lúc mở lần đầu).
+Kiểm: tắt thẻ QC ở menu → mở popup vẫn thấy QC; popup cao hơn màn 768px vẫn mở ở **đầu** (focus `preventScroll`).
+
+## Nhật ký phiên bản trong app — chỉ hiện thay đổi về sản phẩm
+
+Bản cài gửi khách không cần biết các lần chỉnh quảng cáo / thư ngỏ. Trong `changelog.json` giữ đủ lịch sử (repo), thêm:
+`"app": false` → ẩn cả mục; `"app_title"` / `"app_changes"` → bản hiển thị cho người dùng. Server trả bản đã lọc ở
+`/api/changelog` (`?all=1` = đủ), script dựng trang giới thiệu lọc giống vậy.
 
 ## Thư ngỏ (popup phong bì)
 

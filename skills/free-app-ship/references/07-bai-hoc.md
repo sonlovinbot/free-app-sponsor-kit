@@ -56,6 +56,9 @@ Trước khi bắt đầu một bước, lướt cột "Bước" để không l�
 | 03/10 | "Cho tôi xem trước preview" | Dựng bản xem trước chạy local (có tham số giả lập giờ) và mở cho người tạo **trước** khi đưa lên trang thật |
 | 03/10 | "2 banner cách nhau ra, thoải mái, không nhồi nhét" | Trang dự án dùng `layout: "wide"` — 1–2 thẻ ngang, khoảng cách rộng |
 | 03/10 | "Trong game có tag và popup dễ thương: giới thiệu game, tác giả, tham gia workshop" | Nhãn "Về game" + popup trong `sponsors.js`; không tự bật, không che HUD |
+| 03/10 | "Bỏ tất cả giá tiền khi hiển thị quảng cáo" | Quảng cáo không ghi giá; `validate_sponsors.py` chặn số tiền; bỏ `price_old` |
+| 03/10 | "Bản offline gửi khách chỉ hiện version liên quan sản phẩm, không đưa phần quảng cáo, thư ngỏ" | `changelog.json`: `"app": false` / `app_title` / `app_changes`; repo giữ đủ lịch sử |
+| 03/10 | "Phát triển bởi… bấm vào mở popup dễ thương, có link; khách tắt ads box thì popup vẫn show lại" | Sponsor Kit 1.1 `about` + `SponsorKit.openAbout()` |
 
 ## Cách làm việc người tạo thích
 
