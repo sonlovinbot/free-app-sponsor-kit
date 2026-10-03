@@ -27,6 +27,11 @@ Trước khi bắt đầu một bước, lướt cột "Bước" để không l�
 | 03/10 | Script kiểm báo "trang chưa có bản mới" dù trang đã có | `curl … \| grep -q` + `set -o pipefail`: grep dừng sớm → curl bị SIGPIPE → báo sai. Tải vào biến trước rồi mới grep | 7 |
 | 03/10 | Script kiểm báo "Thiếu LICENSE" dù có | `ls LICENSE* COPYING*` lỗi khi một mẫu không khớp → dùng `ls -d … \| head -1` và kiểm chuỗi rỗng. **Viết script kiểm thì thử cả trên repo có lỗi cài sẵn lẫn repo sạch** | 3 |
 | 03/10 | Hỏi nên xác minh `danghuuson.com` hay `app.danghuuson.com`; muốn `app…/a` hay `a.…` | Xác minh tên miền gốc là đủ; dùng repo `<user>.github.io` + CNAME để mọi dự án thành `app…/<repo>`. Trang 404 lúc đầu là do chưa có repo này | 5 |
+| 03/10 | Khung tài trợ: CSS dời vị trí nhãn trong game không ăn | CSS của kit nạp **sau** CSS trang → cùng độ ưu tiên thì kit thắng. Ghi đè bằng `body .spk-game.pos-…` | 5 |
+| 03/10 | Thử script mới trên game thật (https) bằng `http://localhost` → không chạy | Trang https chặn script http. Dùng Playwright `context.route()` trả file local cho đúng URL thật | 6 |
+| 03/10 | Nhãn đặt góc trên trái che nút "Động tác" ở điện thoại; góc dưới trái đè chân trang | **Chụp từng game ở 1280px và 390px trước khi chọn góc**; đè đúng chỗ chip có sẵn (`data-anchor`) hoặc ẩn khi đang chơi (`data-hide-when`) | 6 |
+| 03/10 | Phần tử `position: fixed` (nền popup) lệch khi cha có `transform` | `transform` tạo khung chứa mới cho con fixed → bỏ transform của cha khi popup mở | 6 |
+| 03/10 | Ảnh trong thẻ bị trống khi chụp màn hình | `loading="lazy"` chưa kịp tải khi chụp phần tử dưới màn hình → ảnh nhỏ (vài chục KB) thì bỏ lazy | 6 |
 | 30/09 | HF Space từ chối file nhị phân push thẳng | Zip/ảnh lớn qua Git LFS — hoặc để bộ cài ở GitHub Releases | 4 |
 
 ## Phản hồi của người tạo (gu & yêu cầu lặp lại)
@@ -47,6 +52,10 @@ Trước khi bắt đầu một bước, lướt cột "Bước" để không l�
 | 02/10 | "Thêm UTM để biết từ AI Audio Studio local app" | UTM tự gắn: source = app, medium = local_app |
 | 02/10 | "Popup dễ thương, thư ngỏ, nền kem, như phong bì" | Thư ngỏ trong `free-app-sponsor-kit` |
 | 02/10 | "Brand dùng xuyên suốt kiểu 7Audio, 7Banner" | Gợi ý thương hiệu mẹ + hậu tố; ưu tiên tận dụng thương hiệu sẵn có (Lovin + …) |
+| 03/10 | "Box sponsor đẹp, hài hoà, cái nào gần ngày thì gấp, ưu tiên; phân loại khoá / e-learning; hết hạn vẫn click được" | Khung `sponsors.json`: tự xếp theo độ gấp, nhãn GẤP + đếm ngược, nhãn loại có biểu tượng, hết hạn mờ nhưng vẫn là link |
+| 03/10 | "Cho tôi xem trước preview" | Dựng bản xem trước chạy local (có tham số giả lập giờ) và mở cho người tạo **trước** khi đưa lên trang thật |
+| 03/10 | "2 banner cách nhau ra, thoải mái, không nhồi nhét" | Trang dự án dùng `layout: "wide"` — 1–2 thẻ ngang, khoảng cách rộng |
+| 03/10 | "Trong game có tag và popup dễ thương: giới thiệu game, tác giả, tham gia workshop" | Nhãn "Về game" + popup trong `sponsors.js`; không tự bật, không che HUD |
 
 ## Cách làm việc người tạo thích
 

@@ -7,7 +7,7 @@ Bộ **2 skill cho Claude Code** của Đặng Hữu Sơn, rút ra từ dự án
 | Skill | Dùng khi | Gồm |
 |---|---|---|
 | 🚀 **`free-app-ship`** | Vibe code xong một app, muốn **đẩy lên cho người dùng** hoặc **ra bản mới** | Hỏi đáp với người tạo (`SHIP.md`), **kiểm bảo mật trước khi share** (API key, token, lịch sử git, bản quyền, dữ liệu cá nhân trong ảnh/log), dọn repo, bộ cài zip + cài 1 lệnh (vượt Gatekeeper/SmartScreen), GitHub Releases, cập nhật phiên bản + changelog, README, trang GitHub Pages (video, ảnh, demo), giao diện + onboarding, **nhật ký bài học** |
-| 💌 **`free-app-sponsor-kit`** | Cần **góc quảng cáo nhỏ** bù chi phí, **báo bản mới**, khung **"Phát triển bởi"** | Bộ code nhúng sẵn: thẻ Ad · Sponsor + thư ngỏ (i), thanh thông báo, UTM, lịch tự tắt — điều khiển từ xa bằng `news.json` |
+| 💌 **`free-app-sponsor-kit`** | Cần **góc quảng cáo nhỏ** bù chi phí, **báo bản mới**, khung **"Phát triển bởi"** | Bộ code nhúng sẵn: thẻ Ad · Sponsor + thư ngỏ (i), thanh thông báo, UTM, lịch tự tắt — điều khiển từ xa bằng `news.json`. **Khung tài trợ cuối trang web** + **popup "Về game"** trong game 3D — điều khiển bằng `sponsors.json` |
 
 ---
 
@@ -33,6 +33,18 @@ Gắn **"góc tài trợ"** vào phần mềm / website **miễn phí** bạn vi
 - **Một file `news.json` điều khiển tất cả** (GitHub Pages): app chạy local vẫn đổi được khi có mạng, mất mạng dùng bản đã lưu;
   website đọc thẳng. Một feed dùng chung nhiều app (lọc bằng `apps`).
 - **An toàn**: chỉ nhận chữ + link https, không chạy mã từ xa, không theo dõi người dùng.
+
+### Khung tài trợ cho website & game — `sponsors.json`
+
+Một file quảng bá nhiều chương trình trên mọi trang: **khoá học Zoom, e-learning, workshop, cộng đồng Zalo**.
+
+- **Tự xếp cái gần ngày lên đầu**: đang LIVE → còn hạn gần nhất → không thời hạn → đã hết (mờ, xuống cuối, **vẫn bấm được**).
+- Còn ≤ 24 giờ: viền đỏ, nhãn **GẤP**, đếm ngược; ≤ 3 ngày: nhãn vàng. Sự kiện (`start`) và hạn ưu đãi (`deadline`) hiển thị khác nhau.
+- **Trang nào hiện chương trình nào** khai trong `pages` — lưới thẻ (trang chủ), thẻ rộng thoáng (trang dự án), nền tối (trang game).
+- **Trong game**: nhãn nhỏ "Về game" + popup dễ thương — tác giả, giới thiệu game, mời đăng ký chương trình còn hạn đầu tiên.
+  Không tự bật, không che HUD (ẩn khi đang chơi / đè đúng chỗ chip có sẵn), popup mở thì game không nhận phím.
+- UTM đủ 4 tham số theo trang + vị trí; trang có Meta Pixel thì gửi thêm `SponsorClick`.
+- `scripts/validate_sponsors.py --urls` kiểm giờ có múi giờ, link https mở được, ảnh có thật.
 
 ## 🚀 free-app-ship — quy trình phát hành
 
@@ -76,8 +88,9 @@ dọn cache thử). Chi tiết quy trình: [`skills/free-app-sponsor-kit/SKILL.m
 | Thư mục | Nội dung |
 |---|---|
 | `kit/` | `sponsor-kit.js` + `sponsor-kit.css` — không phụ thuộc thư viện |
+| `web/` | `sponsors.js` + `sponsors.css` — khung tài trợ website + popup trong game (`sponsors.json`) |
 | `server/` | Proxy `/api/news` cho FastAPI và Express (cache đĩa khi offline) |
-| `templates/` | `news.json` mẫu, hướng dẫn đăng thông báo, chỗ để ảnh quảng cáo |
+| `templates/` | `news.json`, `sponsors.json` mẫu, hướng dẫn đăng thông báo, chỗ để ảnh quảng cáo |
 | `scripts/validate_news.py` | Kiểm feed trước khi push (`--urls` mở thử link và ảnh) |
 | `examples/integrate.html` | Đoạn gắn mẫu |
 

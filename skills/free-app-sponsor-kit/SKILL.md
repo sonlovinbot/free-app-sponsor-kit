@@ -1,6 +1,6 @@
 ---
 name: free-app-sponsor-kit
-description: Gắn "góc tài trợ" vào phần mềm / website MIỄN PHÍ vibe code — thẻ quảng cáo nhãn "Ad · Sponsor" có nút (i) mở thư ngỏ dạng phong bì giải thích vì sao có quảng cáo, thanh thông báo + báo phiên bản mới, khung "Phát triển bởi", link gắn UTM. Nội dung điều khiển từ xa bằng một file news.json (GitHub Pages): app local vẫn đổi được khi có mạng, mất mạng dùng bản đã lưu; website đọc thẳng. Dùng khi người dùng nói "gắn quảng cáo / ad sponsor / góc tài trợ / banner Coachio", "thêm phát triển bởi", "thông báo bản mới", "nhúng sponsor kit", "làm giống AI Audio Studio", hoặc đang làm một phần mềm miễn phí và cần chỗ quảng cáo nhỏ để bù chi phí.
+description: Gắn "góc tài trợ" vào phần mềm / website MIỄN PHÍ vibe code — thẻ quảng cáo nhãn "Ad · Sponsor" có nút (i) mở thư ngỏ dạng phong bì giải thích vì sao có quảng cáo, thanh thông báo + báo phiên bản mới, khung "Phát triển bởi", link gắn UTM. Nội dung điều khiển từ xa bằng một file news.json (GitHub Pages): app local vẫn đổi được khi có mạng, mất mạng dùng bản đã lưu; website đọc thẳng. Dùng khi người dùng nói "gắn quảng cáo / ad sponsor / góc tài trợ / banner Coachio", "thêm phát triển bởi", "thông báo bản mới", "nhúng sponsor kit", "làm giống AI Audio Studio", hoặc đang làm một phần mềm miễn phí và cần chỗ quảng cáo nhỏ để bù chi phí. Có thêm "khung tài trợ" cho website/trang giới thiệu (nhiều chương trình: khoá học, e-learning, workshop, cộng đồng Zalo — tự xếp cái gần ngày lên đầu, nhãn GẤP, đếm ngược, hết hạn vẫn bấm được) và nhãn + popup "Về game" trong game 3D, điều khiển bằng một file sponsors.json — dùng khi nói "box sponsor", "đặt quảng cáo khoá học/workshop dưới trang", "popup giới thiệu game", "ad nào đặt ở link nào".
 ---
 
 # Free App Sponsor Kit
@@ -22,6 +22,10 @@ một góc quảng cáo nhỏ của **Coachio Academy** để bù chi phí phát
 | `templates/HUONG-DAN-THONG-BAO.md` | Hướng dẫn cho chủ app: các trường, xếp lịch, an toàn |
 | `scripts/validate_news.py` | Kiểm feed trước khi push (`--urls` mở thử link/ảnh) |
 | `examples/integrate.html` | Đoạn HTML + `SponsorKit.init` mẫu |
+| `web/sponsors.js` + `web/sponsors.css` | **Khung tài trợ cho website** (nhiều chương trình, tự xếp theo độ gấp) + **nhãn/popup "Về game"** trong game — xem mục cuối |
+| `templates/sponsors.json` | Dữ liệu mẫu: 4 chương trình (workshop, cộng đồng Zalo, khoá Zoom, e-learning) + bảng trang nào hiện gì |
+| `scripts/validate_sponsors.py` | Kiểm `sponsors.json` trước khi push (`--urls` mở thử link đăng ký) |
+| `examples/sponsor-box.html` | 4 cách gắn: lưới, thẻ rộng, nền tối, popup trong game |
 
 ## Quy trình gắn vào một phần mềm mới
 
@@ -72,6 +76,59 @@ Luật bắt buộc (kit và validator cùng ép):
 
 **6. Phát hành bản mới của app:** tăng `latest_version` trong feed → mọi máy bản cũ thấy thanh "Đã có bản mới".
 
+## Khung tài trợ cho website & game (`sponsors.json`)
+
+Khác `news.json` (1 thẻ nhỏ trong **app**), đây là khung **cuối trang web** quảng bá nhiều chương trình cùng lúc,
+và nhãn "Về game" trong **game/app toàn màn hình**. Một file dữ liệu điều khiển mọi trang.
+
+**Cài một lần:** chép `web/sponsors.js`, `web/sponsors.css`, `templates/sponsors.json` vào thư mục `sponsors/` của
+trang chủ tổng hợp (vd repo `<user>.github.io` → `app.danghuuson.com/sponsors/`), ảnh vào `sponsors/img/`.
+Trang khác (kể cả tên miền khác) gắn script tuyệt đối tới đó — Pages trả CORS `*` nên đọc được JSON.
+
+**Dữ liệu** — mỗi chương trình trong `items`:
+
+| Trường | Ý nghĩa |
+|---|---|
+| `id`, `campaign` | `campaign` → `utm_campaign` |
+| `kind` | `workshop` · `community` (Zalo) · `course` (khoá Zoom) · `elearning` — quyết định nhãn + biểu tượng |
+| `title`, `desc`, `short` | `short` = chữ ngắn trên nhãn trong game ("Workshop 3D") |
+| `start` + `duration_min` | **sự kiện** (workshop, live): trước giờ → đếm ngược; trong giờ → LIVE; sau → "Đã diễn ra" |
+| `deadline` + `deadline_label` | **hạn ưu đãi** (khoá học): "Ưu đãi đến 23:59 đêm mai" |
+| không có cả hai | **không thời hạn** (e-learning): "Học mọi lúc", xếp sau các mục có ngày |
+| `price`, `price_old`, `price_note` | dòng giá; `price_note` cho mã giảm giá / ghi chú |
+| `url` | link đăng ký https. **Trống → tự ẩn** trên trang thật (`?spk_preview` mới hiện) |
+| `image`, `fit`, `pos`, `bg`, `accent` | ảnh trong `img/`; bìa sách/ảnh dọc dùng `fit: contain` + `bg` cùng tông; `accent` = màu nhãn + nút |
+| `cta`, `cta_popup`, `pitch` | chữ nút; chữ nút + câu mời trong popup game |
+
+Giờ luôn ghi **kèm múi giờ** (`2026-10-03T19:30:00+07:00`) — validator chặn nếu thiếu.
+
+**Trang nào hiện gì** — `pages.<tên>`: `items` (`["*"]` = tất cả), `source` (→ `utm_source`), `title`, `lead`,
+`layout: "wide"` (1–2 thẻ ngang, thoáng). Trang `game` = popup trong game: lấy **chương trình còn hạn đầu tiên**
+(workshop hết giờ → tự chuyển sang mục kế, vd e-learning).
+
+**Tự động theo thời gian:** xếp LIVE → còn hạn gần nhất → không thời hạn → đã hết (mờ, xuống cuối, nút "Xem lại",
+**vẫn bấm được**). ≤ 24 giờ: viền đỏ + "GẤP" + chấm nhấp nháy; ≤ 3 ngày: nhãn vàng. Đếm ngược tự cập nhật mỗi phút.
+UTM: `utm_source`=`pages.<tên>.source`, `utm_medium`=`sponsor_box` (popup game: `game_popup`), `utm_campaign`,
+`utm_content`=`<trang>-<vị trí>`. Trang đã có Meta Pixel → tự gửi `SponsorClick` (content_ids, content_type, placement).
+
+**Gắn:** xem `examples/sponsor-box.html`.
+- Cuối trang: `<div data-sponsor-page="hub"></div>` + 1 thẻ script. Trang luôn nền tối: thêm `data-theme="dark"`.
+- Trong game: thẻ script có `data-game`, `data-desc`, `data-landing`, `data-source`, vị trí `data-pos`
+  (4 góc) **hoặc** `data-anchor=".selector"` (đè đúng chỗ một chip có sẵn, vd "Tác giả", và ẩn chip đó; chip không
+  có trên màn hình → nhãn ẩn). `data-hide-when="#hud:not(.hidden)"` ẩn nhãn lúc đang chơi.
+  Dời vị trí theo màn hình bằng CSS của game: `body .spk-game.pos-bottom-left { bottom: 128px }` (**phải có `body`**
+  — CSS của kit nạp sau nên cùng độ ưu tiên sẽ thắng).
+- Popup không tự bật; khi mở, game **không nhận phím/chuột** (Esc đóng) để không bắn nhầm / xoay camera.
+
+**Kiểm trước khi giao:**
+- [ ] `python3 scripts/validate_sponsors.py sponsors/sponsors.json --urls` → 0 lỗi.
+- [ ] Xem trước các mốc giờ bằng `?spk_preview&spk_now=2026-10-03T20:00:00%2B07:00` (LIVE / GẤP / đã hết).
+- [ ] 1280px + 375px (điện thoại: vuốt ngang, thẻ sau ló ra), nền sáng/tối, không cuộn ngang.
+- [ ] **Từng game, cả máy tính lẫn điện thoại**: nhãn không che nút/HUD (chụp màn hình rồi mới chọn góc).
+      Thử trên game thật chưa deploy: Playwright `context.route("https://app.danghuuson.com/sponsors/**")` trả file
+      local rồi chèn thẻ script (script `http://localhost` bị trang https chặn).
+- [ ] Popup mở: bấm phím (W, Space) → game không nhận; Esc đóng; link có đủ 4 utm.
+
 ## Thư ngỏ (popup phong bì)
 
 Nền kraft, nắp gập tam giác, con dấu sáp ♥, giấy kem kẻ dòng, tem "FREE". Nội dung mặc định nói 4 ý, theo thứ tự:
@@ -82,6 +139,7 @@ Giữ đúng sự thật: nếu app CÓ gửi dữ liệu đi đâu thì sửa �
 
 ## Không làm
 - Không chèn HTML / script từ feed, không nhận link `http:` hay `javascript:` (kit gắn bằng `textContent`).
-- Không thêm theo dõi người dùng (pixel, analytics) vào app để đo QC — đo bằng UTM ở trang đích.
-- Không hiện quá 1 thẻ QC + 2 thanh; không popup QC tự bật; không QC không có ngày kết thúc.
+- Không thêm theo dõi người dùng (pixel, analytics) vào **app chạy trên máy** để đo QC — đo bằng UTM ở trang đích.
+  (Khung tài trợ trên website chỉ gửi `SponsorClick` khi trang đó vốn đã có Meta Pixel và đã ghi rõ ở chân trang.)
+- Không hiện quá 1 thẻ QC + 2 thanh **trong app**; không popup QC tự bật (kể cả popup game); QC trong app không có ngày kết thúc.
 - Không bỏ dòng ghi nhận dự án gốc (`basedOn`) của app dựa trên mã nguồn mở.

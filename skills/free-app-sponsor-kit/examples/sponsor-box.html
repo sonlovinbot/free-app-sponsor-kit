@@ -1,0 +1,27 @@
+<!-- Khung tài trợ (sponsors.json) — 4 cách gắn. Thư mục sponsors/ đặt ở trang chủ tổng hợp
+     (vd app.danghuuson.com/sponsors/), mọi trang khác gắn script tuyệt đối tới đó. -->
+
+<!-- 1) Cuối trang, lưới thẻ (trang chủ nhiều chương trình) -->
+<div data-sponsor-page="hub"></div>
+
+<!-- 2) Cuối trang dự án, 1–2 thẻ rộng thoáng: đặt "layout": "wide" cho trang đó trong sponsors.json -->
+<div data-sponsor-page="vieneu"></div>
+
+<!-- 3) Trang luôn nền tối: thêm data-theme="dark"; id để menu trỏ tới -->
+<div id="workshop" data-sponsor-page="games" data-theme="dark"></div>
+
+<!-- Script cho 1–3, gắn một lần cuối <body> -->
+<script src="https://app.danghuuson.com/sponsors/sponsors.js" defer></script>
+
+<!-- 4) Trong game / app toàn màn hình: nhãn "Về game" + popup (tác giả, chương trình còn hạn đầu tiên của trang "game").
+     Không dùng chung thẻ <script> với 1–3 (mỗi trang chỉ gắn 1 lần). -->
+<script src="https://app.danghuuson.com/sponsors/sponsors.js" defer
+  data-game="Mira · Đêm Linh Quang"
+  data-desc="Một câu giới thiệu game."
+  data-landing="https://studio.danghuuson.com/games/#mira"
+  data-source="game_mira"
+  data-pos="top-right"
+  data-hide-when="#hud:not(.hidden)"></script>
+<!-- Biến thể: data-anchor=".author-link" (đặt nhãn đè đúng chỗ chip có sẵn, ẩn chip đó),
+     data-label / data-kicker / data-close đổi chữ; dời vị trí theo màn hình bằng CSS:
+     body .spk-game.pos-bottom-left { bottom: 128px; } -->

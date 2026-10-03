@@ -10,7 +10,7 @@
     {
       "name": "free-app-sponsor-kit",
       "source": "./",
-      "description": "Bộ skill phát hành phần mềm miễn phí: free-app-ship (quy trình phát hành, kiểm bảo mật, bộ cài, GitHub Releases, trang Pages, bài học) + free-app-sponsor-kit (Ad · Sponsor, thư ngỏ, thông báo, báo bản mới, Phát triển bởi, UTM)."
+      "description": "Bộ skill phát hành phần mềm miễn phí: free-app-ship (quy trình phát hành, kiểm bảo mật, bộ cài, GitHub Releases, trang Pages, bài học) + free-app-sponsor-kit (Ad · Sponsor, thư ngỏ, thông báo, báo bản mới, Phát triển bởi, UTM, khung tài trợ website + popup trong game)."
     }
   ]
 }
